@@ -16,19 +16,28 @@ window.onload = () => {
 };
 
 function checkSetting() {
-  chrome.storage.local.get(['enabled'], (result) => {
-      const isEnabled = result.enabled
-    document.getElementById("darkSetting").checked = isEnabled
-    if(isEnabled) enableDarkMode()
+  chrome.storage.local.get(["enabled"], (result) => {
+    const isEnabled = !!result.enabled;
+    const settingCheckbox = document.getElementById(
+      "darkSetting"
+    ) as HTMLInputElement;
+    settingCheckbox.checked = isEnabled;
+    if (isEnabled) enableDarkMode();
   });
 }
 
 function enableDarkMode() {
-  document.getElementsByTagName("ytd-app")[0].style.backgroundColor = "black";
+  const websiteBody = document.getElementsByTagName(
+    "ytd-app"
+  )[0] as HTMLElement;
+  websiteBody.style.backgroundColor = "black";
 }
 
 function storageSetting() {
-  const isEnabled = document.getElementById("darkSetting").checked;
+  const settingCheckbox = document.getElementById(
+    "darkSetting"
+  ) as HTMLInputElement;
+  const isEnabled = settingCheckbox.checked;
   const settings = {
     enabled: isEnabled,
   };
