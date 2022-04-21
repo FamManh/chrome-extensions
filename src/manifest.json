@@ -1,0 +1,29 @@
+{
+  "name": "My first extension",
+  "description": "Learning all about Chrome Extensions Manifest Version 3!",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["background.js", "backgroundMessaging.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js", "contentMessaging.js", "contentRequest.js"],
+      "matches": ["https://*.youtube.com/*"],
+      "exclude_excludes": ["https://*.youtube.com/*dirt*"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "/images/android-chrome-192x192.png",
+    "32": "/images/android-chrome-192x192.png",
+    "48": "/images/android-chrome-192x192.png",
+    "128": "/images/android-chrome-192x192.png"
+  },
+  "browser_action": {
+    "default_title": "Created by Manh, enjoy! :)",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["bookmarks", "storage", "tabs", "https://api.github.com/*"]
+}
